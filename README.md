@@ -3,7 +3,9 @@
 A calm, focused Obsidian theme inspired by the [Bear](https://bear.app) notes app.
 Light mode follows Bear's *Red Graphite* look, dark mode its *Dark Graphite* look.
 
-![Polar](preview.png)
+![Polar in light mode](preview.png)
+
+![Polar in dark mode](preview-dark.png)
 
 Polar is an independent community theme and is not affiliated with or endorsed by Bear or Shiny Frog.
 
