@@ -21,7 +21,8 @@ Polar is an independent community theme and is not affiliated with or endorsed b
 ## Recommended setup
 
 For the three-column layout (tags · notes · editor), install the
-[Notebook Navigator](https://github.com/johansan/notebook-navigator) plugin and
+[Notebook Navigator](https://community.obsidian.md/plugins/notebook-navigator) plugin
+from the community plugins ([source on GitHub](https://github.com/johansan/notebook-navigator)) and
 place it in the left sidebar. Polar styles it out of the box. Suggested settings:
 
 - **Notebook Navigator**: note grouping *none*, task progress off, note counts off;
