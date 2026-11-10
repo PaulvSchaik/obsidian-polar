@@ -26,7 +26,10 @@ from the community plugins ([source on GitHub](https://github.com/johansan/noteb
 place it in the left sidebar. Polar styles it out of the box. Suggested settings:
 
 - **Notebook Navigator**: note grouping *none*, task progress off, note counts off;
-  toolbar: no navigation buttons, list only *search* and *new note*
+  toolbar: no navigation buttons, list only *search* and *new note*.
+  Quickest way: download [`notebook-navigator-settings.json`](notebook-navigator-settings.json) and load it via
+  *Settings → Notebook Navigator → Import and export settings → Import from file*.
+  Note: importing resets any Notebook Navigator setting not in this file to its default.
 - **Obsidian → Editor**: readable line length on, backlinks in document off
 - **Obsidian → Appearance**: show inline title on
 

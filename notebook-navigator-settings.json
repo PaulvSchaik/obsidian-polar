@@ -1,0 +1,31 @@
+{
+  "noteGrouping": "none",
+  "includeDescendantNotes": true,
+  "showNoteCount": false,
+  "showFileTaskProgress": false,
+  "showFileTaskProgressBar": false,
+  "showFileTaskProgressCount": false,
+  "showRecentNotes": false,
+  "showProperties": false,
+  "showAllPropertiesFolder": false,
+  "toolbarVisibility": {
+    "navigation": {
+      "toggleDualPane": false,
+      "expandCollapse": false,
+      "calendar": false,
+      "hiddenItems": false,
+      "rootReorder": false,
+      "newFolder": false
+    },
+    "list": {
+      "back": false,
+      "search": true,
+      "reveal": false,
+      "descendants": false,
+      "groupExpansion": false,
+      "sort": false,
+      "appearance": false,
+      "newNote": true
+    }
+  }
+}
