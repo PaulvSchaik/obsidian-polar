@@ -1,0 +1,4 @@
+.DS_Store
+# Demo vault: keep notes and settings, not third-party plugin code or window state
+demo-vault/.obsidian/plugins/
+demo-vault/.obsidian/workspace*.json
