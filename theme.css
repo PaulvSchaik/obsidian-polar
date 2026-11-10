@@ -235,8 +235,8 @@ body {
   color: var(--text-muted);
 }
 
-.workspace-leaf-resize-handle {
-  border-color: var(--background-modifier-border) !important;
+body .workspace .workspace-leaf-resize-handle {
+  border-color: var(--background-modifier-border);
 }
 
 /* Ribbon + left sidebar: Bear's dark graphite column */
@@ -360,8 +360,8 @@ body.theme-dark {
 }
 
 /* Bear marks the selected note with a red bar on the left */
-.nn-file.nn-selected .nn-file-content::before {
-  box-shadow: inset 4px 0 0 var(--bear-red) !important;
+body .nn-list-pane .nn-file.nn-selected .nn-file-content::before {
+  box-shadow: inset 4px 0 0 var(--bear-red);
 }
 
 /* -----------------------------------------------------------------------------
@@ -392,8 +392,8 @@ body.theme-dark {
 }
 
 /* Bear shows the heading markers faint, hanging in the left margin */
-.cm-formatting-header {
-  color: var(--text-faint) !important;
+body .markdown-source-view.mod-cm6 .cm-formatting-header {
+  color: var(--text-faint);
   font-weight: 400;
 }
 
@@ -449,9 +449,9 @@ body.theme-dark {
 
 .cm-underline,
 .markdown-rendered u {
-  text-decoration: underline;
-  text-decoration-color: var(--bear-red);
-  text-underline-offset: 3px;
+  text-decoration: none;
+  border-bottom: 1px solid var(--bear-red);
+  padding-bottom: 1px;
 }
 
 /* -----------------------------------------------------------------------------
@@ -514,18 +514,18 @@ input[type="checkbox"]:checked {
 /* -----------------------------------------------------------------------------
    9. Code, quotes, rules, tables
    -------------------------------------------------------------------------- */
-.cm-inline-code,
-.markdown-rendered :not(pre) > code {
-  color: var(--code-inline) !important;
+body .markdown-source-view.mod-cm6 span.cm-inline-code,
+body .markdown-rendered :not(pre) > code {
+  color: var(--code-inline);
   background-color: var(--code-background);
   border-radius: 4px;
   padding: 1px 5px;
   font-size: 0.88em;
 }
 
-.markdown-rendered pre,
-.HyperMD-codeblock {
-  background-color: var(--code-background) !important;
+body .markdown-rendered pre,
+body .markdown-source-view.mod-cm6 .HyperMD-codeblock {
+  background-color: var(--code-background);
   font-size: 0.88em;
 }
 
@@ -585,17 +585,16 @@ input[type="checkbox"]:checked {
    10. Small finishing touches
    -------------------------------------------------------------------------- */
 /* No status bar (word count, sync, …) — Bear keeps the window clean */
-.status-bar {
-  display: none !important;
+body .app-container .status-bar {
+  display: none;
 }
 
 ::selection {
   background-color: var(--text-selection);
 }
 
-.cm-cursor,
-.cm-cursor-primary {
-  border-left-color: var(--bear-red) !important;
+body {
+  --caret-color: var(--bear-red);
 }
 
 /* -----------------------------------------------------------------------------
@@ -603,8 +602,8 @@ input[type="checkbox"]:checked {
    -------------------------------------------------------------------------- */
 
 /* Thin light divider between note list and editor */
-.workspace-split.mod-left-split > .workspace-leaf-resize-handle {
-  border-right: 1px solid var(--bear-pane-divider) !important;
+body .workspace .workspace-split.mod-left-split > .workspace-leaf-resize-handle {
+  border-right: 1px solid var(--bear-pane-divider);
 }
 
 /* Tags in the note list read as plain "#tag" text, like Bear's previews */
@@ -635,14 +634,14 @@ body {
   --vault-profile-display: none;
 }
 
-.workspace-sidedock-vault-profile {
-  display: none !important;
+body .workspace .workspace-sidedock-vault-profile {
+  display: none;
 }
 
 /* No tab bar above the editor: one calm note, like Bear */
-.workspace-split.mod-root .workspace-tab-header-container,
-.workspace-split.mod-root .workspace-tabs.mod-stacked .workspace-tab-header {
-  display: none !important;
+body .workspace .workspace-split.mod-root .workspace-tab-header-container,
+body .workspace .workspace-split.mod-root .workspace-tabs.mod-stacked .workspace-tab-header {
+  display: none;
 }
 
 /* The tab bar was the window's drag area; let the note header take over */
@@ -660,9 +659,8 @@ body {
    12. Top of the window: no sidebar tab row. Traffic lights sit on the dark
        tag column, "Notes ⌄" sits level with them on the white list — Bear 2.
    -------------------------------------------------------------------------- */
-.workspace-split.mod-left-split > .workspace-tabs > .workspace-tab-header-container,
-.workspace-split.mod-left-split .workspace-tabs .workspace-tab-header-container {
-  display: none !important;
+body .workspace .workspace-split.mod-left-split .workspace-tabs .workspace-tab-header-container {
+  display: none;
 }
 
 /* Room for the traffic lights above the tag column */
@@ -720,16 +718,19 @@ body {
 }
 
 /* No ↗ icon after external links */
-.external-link {
-  background-image: none !important;
-  padding-right: 0 !important;
+body .external-link,
+body .markdown-rendered a.external-link,
+body .markdown-source-view.mod-cm6 .external-link {
+  background-image: none;
+  padding-right: 0;
 }
 
 /* Footnote references: small red superscript */
-.cm-footref,
-.markdown-rendered sup.footnote-ref a,
-.markdown-rendered a.footnote-link {
-  color: var(--bear-red) !important;
+body .markdown-source-view.mod-cm6 .cm-footref.cm-hmd-barelink,
+body .markdown-source-view.mod-cm6 .cm-footref,
+body .markdown-rendered sup.footnote-ref a,
+body .markdown-rendered a.footnote-link {
+  color: var(--bear-red);
   text-decoration: none;
 }
 
