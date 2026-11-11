@@ -6,6 +6,56 @@
      [ dark tag/folder sidebar ] [ note list with previews ] [ calm editor ]
    ============================================================================= */
 
+/* @settings
+
+name: Polar
+id: polar
+settings:
+    -
+        id: polar-interface
+        title: Interface
+        description: Polar hides some of Obsidian's interface for a calm, Bear-like window. Bring it back here.
+        type: heading
+        level: 2
+        collapsed: false
+    -
+        id: polar-status-bar
+        title: Status bar
+        description: Word count, sync status and other plugin indicators
+        type: class-select
+        allowEmpty: false
+        default: polar-status-bar-hidden
+        options:
+            -
+                label: Hidden
+                value: polar-status-bar-hidden
+            -
+                label: Show on hover
+                value: polar-status-bar-hover
+            -
+                label: Visible
+                value: polar-status-bar-visible
+    -
+        id: polar-show-tab-bar
+        title: Show tab bar
+        description: The tab bar above the editor
+        type: class-toggle
+        default: false
+    -
+        id: polar-show-vault-profile
+        title: Show vault footer
+        description: Vault name, help and settings buttons under the sidebar
+        type: class-toggle
+        default: false
+    -
+        id: polar-show-note-header
+        title: Show note title and navigation buttons
+        description: Back and forward buttons and the file title in the note header
+        type: class-toggle
+        default: false
+
+*/
+
 /* -----------------------------------------------------------------------------
    1. Shared tokens
    -------------------------------------------------------------------------- */
@@ -584,9 +634,19 @@ body .markdown-source-view.mod-cm6 .HyperMD-codeblock {
 /* -----------------------------------------------------------------------------
    10. Small finishing touches
    -------------------------------------------------------------------------- */
-/* No status bar (word count, sync, …) — Bear keeps the window clean */
-body .app-container .status-bar {
+/* No status bar (word count, sync, …) — Bear keeps the window clean.
+   Style Settings: hidden (default), show on hover, or visible. */
+body:not(.polar-status-bar-hover):not(.polar-status-bar-visible) .app-container .status-bar {
   display: none;
+}
+
+body.polar-status-bar-hover .app-container .status-bar {
+  opacity: 0;
+  transition: opacity 150ms ease;
+}
+
+body.polar-status-bar-hover .app-container .status-bar:hover {
+  opacity: 1;
 }
 
 ::selection {
@@ -629,29 +689,80 @@ body .workspace .workspace-split.mod-left-split > .workspace-leaf-resize-handle 
   color: var(--text-normal);
 }
 
-/* No vault footer under the sidebar (Bear has none). Settings: ⌘, */
-body {
+/* No vault footer under the sidebar (Bear has none). Settings: ⌘,
+   Style Settings: "Show vault footer" brings it back. */
+body:not(.polar-show-vault-profile) {
   --vault-profile-display: none;
 }
 
-body .workspace .workspace-sidedock-vault-profile {
+body:not(.polar-show-vault-profile) .workspace .workspace-sidedock-vault-profile {
   display: none;
 }
 
-/* No tab bar above the editor: one calm note, like Bear */
-body .workspace .workspace-split.mod-root .workspace-tab-header-container,
-body .workspace .workspace-split.mod-root .workspace-tabs.mod-stacked .workspace-tab-header {
+/* Shown: no full-width strip, but a small transparent row in the bottom-left
+   corner of the dark tag column, so both columns still run to the bottom.
+   Two lines: vault name on top, help and settings below. It stays within
+   Notebook Navigator's minimum tag column width (150px), so it never spills
+   onto the note list; a long vault name truncates with ….
+   no-drag: the tag column is a window drag area, which would otherwise
+   swallow clicks on the buttons. */
+body.polar-show-vault-profile .workspace-split.mod-left-split {
+  position: relative;
+}
+
+body.polar-show-vault-profile:not(.is-mobile) .workspace-split.mod-left-split .workspace-sidedock-vault-profile {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  row-gap: 0;
+  width: max-content;
+  max-width: 150px;
+  padding: 6px 8px 8px;
+  -webkit-app-region: no-drag;
+  border-top: none;
+  background-color: transparent;
+}
+
+body.polar-show-vault-profile:not(.is-mobile) .workspace-split.mod-left-split .workspace-sidedock-vault-profile .workspace-drawer-vault-switcher {
+  flex: 1 0 100%;
+  min-width: 0;
+  padding: 4px 6px;
+  color: var(--text-muted);
+}
+
+body.polar-show-vault-profile:not(.is-mobile) .workspace-split.mod-left-split .workspace-sidedock-vault-profile .workspace-drawer-vault-switcher:hover {
+  color: var(--text-normal);
+}
+
+body.polar-show-vault-profile:not(.is-mobile) .workspace-split.mod-left-split .workspace-sidedock-vault-profile .workspace-drawer-vault-actions {
+  flex-shrink: 0;
+}
+
+/* Keep the bottom of the tag list clear of the footer row. The space goes on
+   the scroller, not the pane: the pane is a drag area (section 12) and its own
+   padding would sit under the buttons and swallow their clicks. */
+body.polar-show-vault-profile .workspace-split.mod-left-split .nn-navigation-pane-scroller {
+  padding-bottom: 76px;
+}
+
+/* No tab bar above the editor: one calm note, like Bear.
+   Style Settings: "Show tab bar" brings it back. */
+body:not(.polar-show-tab-bar) .workspace .workspace-split.mod-root .workspace-tab-header-container,
+body:not(.polar-show-tab-bar) .workspace .workspace-split.mod-root .workspace-tabs.mod-stacked .workspace-tab-header {
   display: none;
 }
 
 /* The tab bar was the window's drag area; let the note header take over */
-.workspace-split.mod-root .view-header {
+body:not(.polar-show-tab-bar) .workspace-split.mod-root .view-header {
   -webkit-app-region: drag;
 }
 
-.workspace-split.mod-root .view-header .clickable-icon,
-.workspace-split.mod-root .view-header .view-header-title-container,
-.workspace-split.mod-root .view-header button {
+body:not(.polar-show-tab-bar) .workspace-split.mod-root .view-header .clickable-icon,
+body:not(.polar-show-tab-bar) .workspace-split.mod-root .view-header .view-header-title-container,
+body:not(.polar-show-tab-bar) .workspace-split.mod-root .view-header button {
   -webkit-app-region: no-drag;
 }
 
@@ -835,8 +946,8 @@ body {
 /* -----------------------------------------------------------------------------
    16. Note header: like Bear, only a few quiet icons on the right
    -------------------------------------------------------------------------- */
-.workspace-split.mod-root .view-header-nav-buttons,
-.workspace-split.mod-root .view-header-title-container {
+body:not(.polar-show-note-header) .workspace-split.mod-root .view-header-nav-buttons,
+body:not(.polar-show-note-header) .workspace-split.mod-root .view-header-title-container {
   visibility: hidden;
 }
 
