@@ -301,8 +301,10 @@ body .workspace .workspace-leaf-resize-handle {
   border-color: var(--background-modifier-border);
 }
 
-/* Ribbon + left sidebar: Bear's dark graphite column */
+/* Ribbon + left sidebar: Bear's dark graphite column.
+   The ribbon is .mod-primary since Obsidian 1.15, .mod-left before that. */
 .workspace-ribbon.mod-left,
+.workspace-ribbon.mod-primary,
 .workspace-split.mod-left-split,
 .workspace-split.mod-left-split .workspace-tab-header-container,
 .workspace-split.mod-left-split .view-header,
@@ -329,8 +331,18 @@ body .workspace .workspace-leaf-resize-handle {
   background-color: var(--bear-side-bg);
 }
 
-.workspace-ribbon.mod-left {
+.workspace-ribbon.mod-left,
+.workspace-ribbon.mod-primary {
+  --ribbon-background: var(--bear-side-bg);
+  --ribbon-background-collapsed: var(--bear-side-bg);
+  /* the strip above the ribbon icons is painted in the titlebar color,
+     with a tab-outline border underneath */
+  --titlebar-background: var(--bear-side-bg);
+  --titlebar-background-focused: var(--bear-side-bg);
+  --tab-outline-color: transparent;
+  --divider-color: transparent;
   border-right: none;
+  border-inline-end: none;
 }
 
 .workspace-split.mod-left-split .workspace-tab-header.is-active {
