@@ -276,6 +276,18 @@ body {
   border-bottom: none;
 }
 
+/* Right sidebar toggle (top-right corner). On macOS it floats above the tab
+   bar with the grey titlebar color; blend it into the editor instead, with
+   the same faint icon as the note header (the tab list chevron ⌄ next to
+   it gets the same faint color). Over an open right sidebar,
+   Obsidian uses --sidebar-tab-container-background, which stays untouched. */
+.workspace-split.mod-root .sidebar-toggle-button.mod-right,
+.workspace-split.mod-root .workspace-tab-header-tab-list {
+  --tab-container-background: var(--background-primary);
+  --icon-color: var(--text-faint);
+  --icon-color-hover: var(--text-muted);
+}
+
 .view-header {
   border-bottom: none;
 }
